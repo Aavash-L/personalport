@@ -75,39 +75,105 @@ export const PROJECTS: Project[] = [
 export const EXPERIENCE: ExperienceItem[] = [
   {
     id: "rotgen",
-    dateRange: "FEB 2026 — PRESENT",
-    role: "Developer (Contract)",
-    company: "Rotgen",
+    dateRange: "Feb 2026 — Present",
+    role: "Developer",
+    company: "Rotgen.org · Contract",
     location: "REMOTE",
     description:
-      "Building and operating Rotgen.org — an AI video platform doing $30K MRR.",
+      "Sole developer behind Rotgen.org — an AI-powered short-form video generator for creators. $30K MRR.",
+    bullets: [
+      "Built and shipped the full product end-to-end: Next.js 15, TypeScript, Tailwind, deployed on Vercel",
+      "Integrated AI video generation pipeline with direct publishing to YouTube, TikTok, and Instagram via OAuth",
+      "Implemented Stripe subscription billing, user auth, and creator dashboard with download/share workflows",
+      "Maintain and iterate on the platform as it scales with users",
+    ],
   },
   {
     id: "verizon",
-    dateRange: "JUN 2025 — AUG 2025",
+    dateRange: "Jun 2025 — Aug 2025",
     role: "Software Engineering Intern",
     company: "Verizon",
     location: "REMOTE",
-    description:
-      "Shipped React/TypeScript components to production on a payments team.",
+    description: "Shipped React/TypeScript components to production on a payments team.",
+    bullets: [
+      "Developed React.js components for payment processing workflows using TypeScript",
+      "Enhanced two-installment payment feature with validation logic and modal confirmation flows",
+      "Troubleshot cross-browser compatibility issues in payment forms and modal dialogs",
+      "Collaborated with senior engineers to debug and improve internal systems",
+    ],
+  },
+  {
+    id: "renewal",
+    dateRange: "May 2025 — Aug 2025",
+    role: "Data Entry & Sales",
+    company: "Renewal by Andersen",
+    location: "ON-SITE",
+    description: "Represented the brand at events and maintained customer data in CRM and Google Sheets.",
+    bullets: [
+      "Represented the brand at promotional events, generating leads and building brand awareness",
+      "Entered and maintained customer data in Google Sheets and company CRM with high accuracy",
+      "Communicated product benefits to diverse audiences, strengthening customer interest",
+    ],
+  },
+  {
+    id: "bestbuy",
+    dateRange: "Nov 2024 — May 2025",
+    role: "Retail Sales Associate",
+    company: "Best Buy · Seasonal",
+    location: "ON-SITE",
+    description: "Seasonal retail sales associate — advised customers on electronics and drove in-store sales.",
   },
   {
     id: "portlock",
-    dateRange: "JAN 2024 — PRESENT",
-    role: "Founder & Lead Developer",
+    dateRange: "Jan 2024 — Present",
+    role: "Founder",
     company: "Portlock Labs",
     location: "REMOTE",
-    description:
-      "Subscription-based education platform. Closed $500K+ in partnership deals.",
+    description: "Subscription-based education platform for emerging crypto and AI markets. $500K+ in partnership deals.",
+    bullets: [
+      "Built a subscription-based educational company to help people learn about crypto and AI markets",
+      "Closed over $500K in partnership deals by leveraging social platforms and networks",
+      "Host weekly online events and publish a weekly newsletter on crypto and AI markets",
+    ],
+  },
+  {
+    id: "pals",
+    dateRange: "Jan 2024 — Sep 2024",
+    role: "Tutor",
+    company: "PALS Learning Center",
+    location: "ON-SITE",
+    description: "Tutored English and Math to middle and high school students.",
+    bullets: [
+      "Tutored English and Math to middle and high school students",
+      "Tracked and managed student progress data using the EdQuill database",
+      "Adapted teaching methods to suit different learning styles and age groups",
+    ],
+  },
+  {
+    id: "amazon",
+    dateRange: "Dec 2023 — Feb 2024",
+    role: "Online Arbitrage",
+    company: "Amazon Seller · Self-employed",
+    location: "ON-SITE",
+    description: "Managed an online resale business on Amazon, generating over $50,000 in sales.",
+    bullets: [
+      "Generated over $50,000 in sales through sourcing and listing products on Amazon",
+      "Used market research and sales analytics to identify profitable opportunities",
+    ],
   },
   {
     id: "squishy",
-    dateRange: "JUN 2022 — DEC 2023",
-    role: "Co-Founder",
+    dateRange: "Jun 2022 — Dec 2023",
+    role: "Data Analyst & Co-Founder",
     company: "Squishy Squad",
     location: "REMOTE",
-    description:
-      "Scaled an online community to 45K+ members. Raised $2M+. Closed $3M+ in brand deals.",
+    description: "Scaled an online community to 45K+ members. Raised $2M+. Closed $3M+ in brand deals.",
+    bullets: [
+      "Raised over $2M by connecting with 4,000+ people across social platforms",
+      "Established $3M+ in partnership deals through leveraging social networks",
+      "Managed the website, Twitter/X account, and server infrastructure",
+      "First to create monetized crypto trading tools for NFTs and digital ownership assets",
+    ],
   },
 ];
 
@@ -117,7 +183,7 @@ export const EXPERIENCE: ExperienceItem[] = [
 export const STATS: Stat[] = [
   { value: "$30K", label: "MONTHLY RECURRING REVENUE — ROTGEN" },
   { value: "45K+", label: "COMMUNITY MEMBERS BUILT — SQUISHY SQUAD" },
-  { value: "$5M+", label: "IN DEALS CLOSED ACROSS VENTURES" },
+  { value: "$3M+", label: "IN DEALS CLOSED ACROSS VENTURES" },
 ];
 
 // ─── TECH STACK ───────────────────────────────────────────────────────────────

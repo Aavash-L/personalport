@@ -124,7 +124,7 @@ export function Hero() {
         >
           <span className="inline-flex items-center gap-2 bg-emerald-400/10 border border-emerald-400/25 text-emerald-400 font-mono text-[11px] uppercase tracking-[0.2em] px-4 py-2 rounded-full">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse-dot" />
-            Open to Work / Internships
+            Open to Internships
           </span>
         </motion.div>
 
@@ -167,9 +167,8 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.85 }}
         >
-          CS student at Rutgers building AI products that generate real revenue.
-          Sole developer of Rotgen ($30K MRR). Based in New Jersey.
-          Open to SWE and product internships.
+          CS student at Rutgers, minoring in Economics. Sole developer of
+          Rotgen ($30K MRR). Based in New Jersey. Open to internships.
         </motion.p>
 
         {/* Social links */}

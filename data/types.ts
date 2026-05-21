@@ -18,6 +18,7 @@ export interface ExperienceItem {
   company: string;
   location: string;
   description: string;
+  bullets?: string[];
 }
 
 export interface Stat {

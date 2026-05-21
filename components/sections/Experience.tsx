@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { EXPERIENCE } from "@/data/portfolio";
 
@@ -25,7 +26,7 @@ export function Experience() {
           </h2>
         </motion.div>
 
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-3">
           {EXPERIENCE.map((item, i) => (
             <ExperienceCard key={item.id} item={item} index={i} />
           ))}
@@ -42,50 +43,87 @@ function ExperienceCard({
   item: (typeof EXPERIENCE)[number];
   index: number;
 }) {
-  const [hovered, setHovered] = useState(false);
+  const [open, setOpen] = useState(false);
+  const hasBullets = item.bullets && item.bullets.length > 0;
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 16 }}
+      initial={{ opacity: 0, y: 14 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.55, ease: "easeOut", delay: index * 0.07 }}
-      className="card p-5 md:p-6 transition-all duration-300"
-      style={{
-        borderColor: hovered
-          ? "rgba(16, 185, 129, 0.35)"
-          : "rgba(255, 255, 255, 0.07)",
-        boxShadow: hovered ? "0 0 24px rgba(16, 185, 129, 0.07)" : "none",
-      }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.05 }}
+      className="card overflow-hidden"
     >
-      <div className="flex flex-col md:flex-row md:items-start md:gap-6">
-        {/* Date */}
-        <div className="flex-shrink-0 mb-3 md:mb-0 md:w-44">
-          <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-600 leading-relaxed">
-            {item.dateRange}
-          </p>
-        </div>
-
-        {/* Content */}
-        <div className="flex-1 min-w-0">
-          <div className="flex items-start justify-between gap-4 mb-1">
-            <div>
-              <p className="font-display font-semibold text-slate-100 text-base md:text-lg leading-tight">
-                {item.role}
-              </p>
-              <p className="text-emerald-400/80 text-sm mt-0.5">{item.company}</p>
-            </div>
-            <span className="font-mono text-[9px] uppercase tracking-[0.15em] text-slate-600 flex-shrink-0 pt-1 bg-white/4 px-2.5 py-1 rounded-full border border-white/8">
-              {item.location}
+      <button
+        className="w-full text-left p-5 md:p-6 cursor-none"
+        onClick={() => hasBullets && setOpen((v) => !v)}
+        data-hover={hasBullets ? "true" : undefined}
+        aria-expanded={open}
+      >
+        <div className="flex items-start gap-4">
+          {/* Left — date pill */}
+          <div className="hidden sm:block flex-shrink-0 pt-0.5">
+            <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-slate-600 bg-white/4 border border-white/8 rounded-full px-3 py-1.5 whitespace-nowrap">
+              {item.dateRange}
             </span>
           </div>
-          <p className="text-slate-500 text-sm leading-[1.7] mt-3">
-            {item.description}
-          </p>
+
+          {/* Center — main info */}
+          <div className="flex-1 min-w-0">
+            {/* Mobile date */}
+            <p className="sm:hidden font-mono text-[10px] uppercase tracking-[0.14em] text-slate-600 mb-2">
+              {item.dateRange}
+            </p>
+
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <p className="font-display font-semibold text-slate-100 text-base leading-tight">
+                  {item.role}
+                </p>
+                <p className="text-emerald-400/80 text-sm mt-0.5">{item.company}</p>
+              </div>
+
+              <div className="flex items-center gap-2 flex-shrink-0">
+                <span className="hidden md:block font-mono text-[9px] uppercase tracking-[0.14em] text-slate-600 border border-white/8 rounded-full px-2.5 py-1">
+                  {item.location}
+                </span>
+                {hasBullets && (
+                  <ChevronDown
+                    size={15}
+                    className={`text-slate-600 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+                  />
+                )}
+              </div>
+            </div>
+
+            <p className="text-slate-500 text-sm leading-relaxed mt-2">
+              {item.description}
+            </p>
+          </div>
         </div>
-      </div>
+      </button>
+
+      {/* Expandable bullets */}
+      <AnimatePresence initial={false}>
+        {open && hasBullets && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="overflow-hidden"
+          >
+            <ul className="px-5 md:px-6 pb-5 space-y-2 border-t border-white/5 pt-4 ml-0 sm:ml-[calc(theme(spacing.3)+6.5rem)]">
+              {item.bullets!.map((b, i) => (
+                <li key={i} className="flex items-start gap-2.5 text-sm text-slate-500 leading-relaxed">
+                  <span className="text-emerald-400/60 mt-1.5 flex-shrink-0 text-[8px]">▸</span>
+                  {b}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }
