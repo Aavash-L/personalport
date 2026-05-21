@@ -1,0 +1,190 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-body), "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-heading), "Space Grotesk", ui-sans-serif, sans-serif;
+  --font-mono: var(--font-code), "JetBrains Mono", ui-monospace, "Courier New", monospace;
+}
+
+/* ─── Base ─────────────────────────────────────────────────── */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #06101a;
+  color: #e2e8f0;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  cursor: none;
+}
+
+@media (pointer: coarse) {
+  body {
+    cursor: auto;
+  }
+}
+
+/* ─── Animations ────────────────────────────────────────────── */
+
+@keyframes marquee-ltr {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-rtl {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(6px); }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 12px rgba(16, 185, 129, 0.3); }
+  50% { box-shadow: 0 0 24px rgba(16, 185, 129, 0.5); }
+}
+
+/* ─── Utility classes ───────────────────────────────────────── */
+
+.animate-marquee-ltr {
+  animation: marquee-ltr var(--marquee-duration, 40s) linear infinite;
+}
+
+.animate-marquee-rtl {
+  animation: marquee-rtl var(--marquee-duration, 40s) linear infinite;
+}
+
+.animate-scroll-bounce {
+  animation: scroll-bounce 1.8s ease-in-out infinite;
+}
+
+.animate-pulse-dot {
+  animation: pulse-dot 1.5s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow-pulse 2.5s ease-in-out infinite;
+}
+
+/* ─── Container ─────────────────────────────────────────────── */
+
+.container-port {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 4rem);
+}
+
+/* ─── Card ──────────────────────────────────────────────────── */
+
+.card {
+  background-color: #0d1b2a;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 0.75rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  border-color: rgba(16, 185, 129, 0.35);
+  box-shadow: 0 0 24px rgba(16, 185, 129, 0.08);
+}
+
+/* ─── Skill pill ────────────────────────────────────────────── */
+
+.skill-pill {
+  display: inline-flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  padding: 0.375rem 0.875rem;
+  font-size: 0.8125rem;
+  color: #94a3b8;
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+  cursor: default;
+}
+
+.skill-pill:hover {
+  border-color: rgba(16, 185, 129, 0.4);
+  color: #34d399;
+  background-color: rgba(16, 185, 129, 0.06);
+}
+
+/* ─── Stack badge (inside project cards) ───────────────────── */
+
+.stack-badge {
+  display: inline-flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  padding: 0.2rem 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #64748b;
+}
+
+/* ─── Link underline animation ──────────────────────────────── */
+
+.link-underline {
+  position: relative;
+  text-decoration: none;
+}
+
+.link-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: #10b981;
+  transition: width 0.3s ease-out;
+}
+
+.link-underline:hover::after {
+  width: 100%;
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #06101a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(16, 185, 129, 0.3);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(16, 185, 129, 0.5);
+}
+
+/* ─── Selection ─────────────────────────────────────────────── */
+
+::selection {
+  background: rgba(16, 185, 129, 0.25);
+  color: #e2e8f0;
+}
