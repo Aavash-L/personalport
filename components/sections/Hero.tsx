@@ -167,8 +167,8 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.85 }}
         >
-          CS student at Rutgers, minoring in Economics. Sole developer of
-          Rotgen ($30K MRR). Based in New Jersey. Open to internships.
+          CS student at Rutgers, minoring in Economics. Based in New Jersey.
+          Open to internships.
         </motion.p>
 
         {/* Social links */}
