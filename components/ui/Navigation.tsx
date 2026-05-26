@@ -3,11 +3,12 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
-const NAV_LINKS = [
+const NAV_LINKS: { label: string; href: string; external?: boolean }[] = [
   { label: "About", href: "#about" },
   { label: "Experience", href: "#experience" },
   { label: "Work", href: "#work" },
   { label: "Contact", href: "#contact" },
+  { label: "Resume", href: "/Aavash.Lamichhane_SWE_Resume.pdf", external: true },
 ];
 
 export function Navigation() {
@@ -68,6 +69,8 @@ export function Navigation() {
                 <a
                   key={link.href}
                   href={link.href}
+                  target={link.external ? "_blank" : undefined}
+                  rel={link.external ? "noopener noreferrer" : undefined}
                   className="text-sm text-slate-400 hover:text-emerald-400 transition-colors duration-200 cursor-none"
                   data-hover="true"
                 >

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, FileText } from "lucide-react";
 
 // Inline SVG icons — lucide-react dropped branded icons in newer versions
 function GithubIcon() {
@@ -115,6 +115,22 @@ export function Hero() {
 
       {/* Content */}
       <div className="relative z-10 container-port flex flex-col items-center text-center pt-24 pb-16">
+        {/* Profile picture placeholder */}
+        <motion.div
+          className="mb-8 w-24 h-24 md:w-36 md:h-36 rounded-full flex items-center justify-center flex-shrink-0"
+          style={{
+            background: "linear-gradient(135deg, rgba(16,185,129,0.15) 0%, rgba(13,148,136,0.1) 100%)",
+            border: "1px solid rgba(52,211,153,0.2)",
+          }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
+          <span className="font-mono text-2xl md:text-3xl font-semibold text-emerald-400/60 select-none">
+            AL
+          </span>
+        </motion.div>
+
         {/* Status badge */}
         <motion.div
           className="mb-8"
@@ -171,7 +187,7 @@ export function Hero() {
           Open to internships.
         </motion.p>
 
-        {/* Social links */}
+        {/* Social links + Resume */}
         <motion.div
           className="flex items-center gap-3 mb-14"
           initial={{ opacity: 0, y: 10 }}
@@ -195,6 +211,20 @@ export function Hero() {
               <Icon />
             </a>
           ))}
+          <a
+            href="/Aavash.Lamichhane_SWE_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 px-4 h-11 rounded-full text-sm text-slate-400 hover:text-emerald-400 transition-all duration-200 cursor-none"
+            style={{
+              background: "rgba(255,255,255,0.04)",
+              border: "1px solid rgba(255,255,255,0.08)",
+            }}
+            data-hover="true"
+          >
+            <FileText size={15} />
+            Resume
+          </a>
         </motion.div>
 
         {/* Scroll indicator */}
