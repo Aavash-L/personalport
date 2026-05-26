@@ -44,37 +44,6 @@ A few highlights from the work featured on this site:
 
 ---
 
-## Project Structure
-
-```
-app/
-  layout.tsx          # Root layout, fonts, metadata
-  page.tsx            # Home page — assembles all sections
-components/
-  sections/           # Hero, About, Experience, Work, Toolbox, Contact
-  ui/                 # Navigation, ProjectCard, ProjectModal, Marquee, etc.
-data/
-  portfolio.ts        # All content — projects, experience, stats, stack
-  types.ts            # Shared TypeScript types
-public/
-  projects/           # Project screenshots
-```
-
-All site content lives in `data/portfolio.ts`. Adding a new project or experience entry is a one-line change there.
-
----
-
-## Running Locally
-
-```bash
-npm install
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000).
-
----
-
 ## Contact
 
 [alamichhane158@gmail.com](mailto:alamichhane158@gmail.com) &nbsp;·&nbsp; [LinkedIn](https://www.linkedin.com/in/aavashlamichhane/) &nbsp;·&nbsp; [GitHub](https://github.com/Aavash-L)
