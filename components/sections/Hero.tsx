@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ChevronDown, FileText } from "lucide-react";
 
@@ -115,20 +116,22 @@ export function Hero() {
 
       {/* Content */}
       <div className="relative z-10 container-port flex flex-col items-center text-center pt-24 pb-16">
-        {/* Profile picture placeholder */}
+        {/* Profile picture */}
         <motion.div
-          className="mb-8 w-24 h-24 md:w-36 md:h-36 rounded-full flex items-center justify-center flex-shrink-0"
-          style={{
-            background: "linear-gradient(135deg, rgba(16,185,129,0.15) 0%, rgba(13,148,136,0.1) 100%)",
-            border: "1px solid rgba(52,211,153,0.2)",
-          }}
+          className="mb-8 w-24 h-24 md:w-36 md:h-36 rounded-full overflow-hidden flex-shrink-0"
+          style={{ border: "1px solid rgba(52,211,153,0.2)" }}
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          <span className="font-mono text-2xl md:text-3xl font-semibold text-emerald-400/60 select-none">
-            AL
-          </span>
+          <Image
+            src="/Aavash_PFP.png"
+            alt="Aavash Lamichhane"
+            width={144}
+            height={144}
+            className="w-full h-full object-cover"
+            priority
+          />
         </motion.div>
 
         {/* Status badge */}
