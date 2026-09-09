@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
-import { Navigation } from "@/components/ui/Navigation";
-import { CustomCursor } from "@/components/ui/CustomCursor";
+import { PortfolioNav } from "@/components/PortfolioNav";
+
 import "./globals.css";
 
 // ─── Fonts ─────────────────────────────────────────────────────────────────
@@ -74,9 +74,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}
     >
-      <body>
-        <CustomCursor />
-        <Navigation />
+      {/* Grammarly injects body attributes before hydration; keep suppression scoped here. */}
+      <body suppressHydrationWarning>
+        <PortfolioNav />
         <main>{children}</main>
       </body>
     </html>

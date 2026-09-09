@@ -14,7 +14,7 @@ export const PROJECTS: Project[] = [
     metric: "MENU + ONLINE ORDERING",
     status: "LIVE",
     url: "https://www.wingsciticafe.com",
-    screenshotPath: "/projects/wingsciti.svg",
+    screenshotPath: "/projects/wingsciti.png",
   },
   {
     id: "truestar",
@@ -24,7 +24,7 @@ export const PROJECTS: Project[] = [
     metric: "60+ LANDING PAGES",
     status: "LIVE",
     url: "https://truestarcontracting.com",
-    screenshotPath: "/projects/truestar.svg",
+    screenshotPath: "/projects/truestar.png",
   },
   {
     id: "urmi",
@@ -34,17 +34,7 @@ export const PROJECTS: Project[] = [
     metric: "BOOKING + GALLERY",
     status: "LIVE",
     url: "https://urmithreadingsalon.com",
-    screenshotPath: "/projects/urmi.svg",
-  },
-  {
-    id: "mogfit",
-    name: "Mogfit",
-    tagline: "AI outfit analysis — aura scoring via vision-language models",
-    stack: ["NEXT.JS", "TYPESCRIPT", "VLM INTEGRATION", "TAILWIND"],
-    metric: "BETA — IN DEVELOPMENT",
-    status: "BETA",
-    url: "https://mogfit.xyz",
-    screenshotPath: "/projects/mogfit.svg",
+    screenshotPath: "/projects/urmi.png",
   },
   {
     id: "rotgen",
@@ -54,18 +44,8 @@ export const PROJECTS: Project[] = [
     metric: "$30K MRR · SOLE DEVELOPER",
     status: "LIVE",
     url: "https://rotgen.org",
-    screenshotPath: "/projects/rotgen.svg",
+    screenshotPath: "/projects/rotgen.png",
     openExternal: true,
-  },
-  {
-    id: "mango",
-    name: "Mango Trading",
-    tagline: "Structured trading education ecosystem",
-    stack: ["NEXT.JS", "TYPESCRIPT", "TAILWIND", "DISCORD INTEGRATION"],
-    metric: "MULTI-PAGE PLATFORM",
-    status: "LIVE",
-    url: "https://mangotrading.org",
-    screenshotPath: "/projects/mango.svg",
   },
 ];
 
@@ -230,3 +210,47 @@ export const CONTACT_LINKS: ContactLink[] = [
     href: "https://github.com/Aavash-L",
   },
 ];
+
+export const BIO = [
+  "I build full-stack AI products and ship them. Currently the sole developer behind Rotgen, an AI video platform doing $30K MRR, and the founder of Portlock Labs, an education company in emerging markets.",
+  "I'm a CS student at Rutgers, minoring in Economics, graduating in 2028. I've been writing code since high school and shipping real software since 2022 — first NFTs and Web3 communities, now AI-native consumer products.",
+  "What I care about right now: small teams, fast iteration, products that earn revenue from day one. I'm looking for SWE and product-data internships where I can build things people use.",
+];
+export const TOOLBOX = [
+  {
+    label: "FRONTEND",
+    items: ["TypeScript", "React", "Next.js", "Tailwind CSS", "Framer Motion", "HTML5", "CSS3", "Shadcn/ui", "Radix UI"],
+  },
+  {
+    label: "BACKEND",
+    items: ["Python", "Node.js", "PostgreSQL", "REST APIs", "OAuth", "SQL", "Supabase", "Prisma", "Express", "FastAPI"],
+  },
+  {
+    label: "AI / LLM",
+    items: ["OpenAI API", "Claude API", "LLM Integration", "Prompt Engineering", "Vision Models", "pandas", "NumPy", "LangChain"],
+  },
+  {
+    label: "TOOLS & INFRA",
+    items: ["Git", "GitHub", "Figma", "Stripe", "Vercel", "Docker", "Solidity", "Playwright", "Postman"],
+  },
+];
+
+export const SITE = {
+  name: "Aavash Lamichhane", initials: "AL", availability: "Open to internships",
+  intro: "Hey, I’m Aavash.", subtitle: "CS student at Rutgers. Full-stack & AI developer.",
+  location: "New Jersey", education: "Rutgers University · CS + Economics minor · 2028",
+  resume: "/Aavash.Lamichhane_SWE_Resume.pdf", portrait: "/story/poster.webp", portraitOriginal: "/Aavash_PFP.png",
+  logo: "/brand/al.svg", manifest: "/story/manifest.json",
+  workTitle: "Ideas are a start.\nShipping is the work.",
+  aboutTitle: "A person behind\nevery product.", experienceTitle: "Built on experience.",
+  toolboxTitle: "The tools change.\nThe curiosity stays.",
+  contactTitle: "Let’s build\nsomething useful.",
+  contactText: "Looking for SWE and product-data internships. Have a role or a project in mind? Let’s talk.",
+  chapters: [
+    { label: "01 / THE PERSON", title: "Hey, I’m\nAavash.", body: "CS student at Rutgers. Full-stack & AI developer.", detail: "New Jersey · Class of 2028", link: "Explore the work", href: "#work" },
+    { label: "02 / THE PRODUCT", title: "From idea\nto shipped.", body: "Rotgen. AI-powered short-form video generation for creators.", detail: "$30K MRR · Sole developer", link: "Visit Rotgen", href: "https://rotgen.org" },
+    { label: "03 / THE RANGE", title: "Built for\nreal businesses.", body: "Restaurant ordering. Contractor discovery. Salon booking. Software with a purpose.", detail: "Wings Citi Cafe · True Star · Urmi", link: "See selected work", href: "#work" },
+    { label: "04 / THE FOUNDATION", title: "More than\nthe interface.", body: "Production experience at Verizon. End-to-end product ownership at Rotgen.", detail: "Experience + toolbox", link: "Read the experience", href: "#experience" },
+    { label: "05 / BACK TO THE PERSON", title: "Let’s build\nsomething useful.", body: "A conversation is a good place to start.", detail: "Open to internships", link: "Get in touch", href: "#contact" },
+  ],
+};

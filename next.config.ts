@@ -16,6 +16,7 @@ const nextConfig: NextConfig = {
   // Prevents false-positive workspace root detection when this project
   // is inside a parent directory that also has a package-lock.json.
   outputFileTracingRoot: process.cwd(),
+  distDir: process.env.NEXT_BUILD_DIR || ".next",
 
   images: {
     formats: ["image/webp", "image/avif"],

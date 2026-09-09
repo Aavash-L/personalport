@@ -1,0 +1,6 @@
+work
+.next-production
+.git
+.env*
+node_modules
+*.tsbuildinfo
