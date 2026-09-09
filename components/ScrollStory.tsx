@@ -7,16 +7,14 @@ const chapterNames = ["Introduction", "Rotgen", "Client work", "Experience", "Co
 export function ScrollStory() {
   const section = useRef<HTMLElement>(null);
   const video = useRef<HTMLVideoElement>(null);
-  const advance = useRef<(direction: number) => boolean>(() => false);
   const [enabled, setEnabled] = useState(false);
   const [chapter, setChapter] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [loading, setLoading] = useState(false);
   const [visibleVideo, setVisibleVideo] = useState(false);
   const [showCopy, setShowCopy] = useState(true);
-  const [quality, setQuality] = useState("smooth");
   const [error, setError] = useState("");
-  const state = useRef({ chapter: 0, playing: false, bypassed: false, readyAt: 0, quality: "smooth" });
+  const state = useRef({ chapter: 0, playing: false, bypassed: false, readyAt: 0 });
   const poster = chapter === 0 ? "/story/video/start.webp" : `/story/video/end-${chapter}.webp`;
 
   function jump(index: number) {
@@ -39,19 +37,20 @@ export function ScrollStory() {
     const v = video.current!;
     v.src = "/story/video/chapter-1.mp4";
     v.load();
-    let wheelAt = 0, touchY = 0, touchUsed = false;
+    let wheelAt = 0, wheelDistance = 0, wheelReady = true, touchY = 0, touchUsed = false;
     const inStory = () => {
       const r = section.current!.getBoundingClientRect();
-      return r.top <= 2 && r.bottom >= Math.min(innerHeight, r.height) - 2;
+      return r.top <= innerHeight * 0.25 && r.bottom >= innerHeight * 0.6;
     };
     const start = (direction: number) => {
       const s = state.current;
       if (s.playing || s.bypassed || performance.now() < s.readyAt || !inStory()) return false;
       if (direction < 0) { if (s.chapter > 0) { jump(s.chapter - 1); return true; } return false; }
       if (s.chapter >= 4) return false;
+      window.scrollTo({top: window.scrollY + section.current!.getBoundingClientRect().top, behavior: "instant"});
       s.playing = true;
       setPlaying(true); setLoading(true); setError(""); setVisibleVideo(false);
-      const source = `/story/video/chapter-${s.chapter + 1}${s.quality === "ultra" ? "-4k" : ""}.mp4`;
+      const source = `/story/video/chapter-${s.chapter + 1}.mp4`;
       if (!v.src.endsWith(source)) { v.src = source; v.load(); } else { v.currentTime = 0; }
       v.play().catch(() => {
         if (!s.playing) return;
@@ -60,14 +59,23 @@ export function ScrollStory() {
       });
       return true;
     };
-    advance.current = start;
     const wheel = (e: WheelEvent) => {
-      const fresh = performance.now() - wheelAt > 250; wheelAt = performance.now();
+      const now = performance.now();
+      if (now - wheelAt > 180) { wheelDistance = 0; wheelReady = true; }
+      wheelAt = now;
       const s = state.current;
-      if (!inStory() || s.bypassed || e.ctrlKey) return;
-      if (s.playing) { e.preventDefault(); return; }
+      if (!inStory() || s.bypassed || e.ctrlKey || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+      if (s.playing) { wheelReady = false; wheelDistance = 0; e.preventDefault(); return; }
       if ((e.deltaY > 0 && s.chapter < 4) || (e.deltaY < 0 && s.chapter > 0)) {
-        e.preventDefault(); if (fresh && Math.abs(e.deltaY) > 1) start(e.deltaY > 0 ? 1 : -1);
+        e.preventDefault();
+        if (!wheelReady || now < s.readyAt) return;
+        // Trackpads begin with tiny deltas: accumulate the gesture, not just its first event.
+        const delta = e.deltaY * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? innerHeight : 1);
+        if (Math.sign(delta) !== Math.sign(wheelDistance)) wheelDistance = 0;
+        wheelDistance += delta;
+        if (Math.abs(wheelDistance) >= 8 && start(wheelDistance > 0 ? 1 : -1)) {
+          wheelReady = false; wheelDistance = 0;
+        }
       }
     };
     const touchStart = (e: TouchEvent) => { touchY = e.touches[0]?.clientY ?? 0; touchUsed = false; };
@@ -84,7 +92,12 @@ export function ScrollStory() {
       const direction = ["ArrowDown", "PageDown", " "].includes(e.key) ? 1 : ["ArrowUp", "PageUp"].includes(e.key) ? -1 : 0;
       if (direction && (state.current.playing || (!e.repeat && start(direction)))) e.preventDefault();
     };
-    const click = (e: MouseEvent) => { if ((e.target as HTMLElement).closest('a[href^="#"]')) skip(); };
+    const click = (e: MouseEvent) => {
+      const link = (e.target as HTMLElement).closest('a[href^="#"]');
+      if (!link) return;
+      if (link.getAttribute("href") === "#top") { state.current.bypassed = false; return; }
+      skip();
+    };
     const reduce = () => { if (reduced.matches) { skip(); setEnabled(false); } };
     window.addEventListener("wheel", wheel, { passive: false });
     window.addEventListener("touchstart", touchStart, { passive: true });
@@ -92,7 +105,7 @@ export function ScrollStory() {
     window.addEventListener("keydown", key); document.addEventListener("click", click);
     reduced.addEventListener("change", reduce);
     return () => {
-      v.pause(); advance.current = () => false;
+      v.pause();
       window.removeEventListener("wheel", wheel); window.removeEventListener("touchstart", touchStart);
       window.removeEventListener("touchmove", touchMove); window.removeEventListener("keydown", key);
       document.removeEventListener("click", click); reduced.removeEventListener("change", reduce);
@@ -119,7 +132,7 @@ export function ScrollStory() {
           onError={() => {
             if (!state.current.playing) return;
             state.current.playing = false; setPlaying(false); setLoading(false); setVisibleVideo(false); setShowCopy(true);
-            setError("This clip couldn’t load. Try Smooth quality or explore the work below.");
+            setError("This clip couldn’t load. Try scrolling again or explore the work below.");
           }}
         />
         <div className="media-shade" />
@@ -138,7 +151,6 @@ export function ScrollStory() {
         <span className="playback-cue" role="status">{error || (loading ? "Loading the next chapter…" : playing ? "A little look inside…" : chapter === 4 ? "Keep scrolling to explore ↓" : enabled ? "Scroll for the next chapter ↓" : "Get to know my work")}</span>
         <a href="#work" className="skip" onClick={skip}>{enabled ? "Skip to work" : "View selected work"} ↓</a>
       </div>
-      {enabled && <label className="quality-control">Video quality <select aria-label="Video quality" disabled={playing} value={quality} onChange={e => { setQuality(e.target.value); state.current.quality = e.target.value; }}><option value="smooth">Smooth · 60 fps</option><option value="ultra">4K · 120 fps enhanced</option></select><span className="quality-note">4K mode is upscaled and interpolated. Playback depends on your screen and device.</span></label>}
     </div>
   </section>;
 }
