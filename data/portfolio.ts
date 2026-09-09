@@ -247,10 +247,10 @@ export const SITE = {
   contactTitle: "Let’s build\nsomething useful.",
   contactText: "Looking for SWE and product-data internships. Have a role or a project in mind? Let’s talk.",
   chapters: [
-    { label: "01 / THE PERSON", title: "Hey, I’m\nAavash.", body: "CS student at Rutgers. Full-stack & AI developer.", detail: "New Jersey · Class of 2028", link: "Explore the work", href: "#work" },
+    { label: "01 / NICE TO MEET YOU", title: "Hey, I’m\nAavash.", body: "CS student at Rutgers. Full-stack & AI developer.", detail: "New Jersey · Class of 2028", link: "Explore the work", href: "#work" },
     { label: "02 / THE PRODUCT", title: "From idea\nto shipped.", body: "Rotgen. AI-powered short-form video generation for creators.", detail: "$30K MRR · Sole developer", link: "Visit Rotgen", href: "https://rotgen.org" },
     { label: "03 / THE RANGE", title: "Built for\nreal businesses.", body: "Restaurant ordering. Contractor discovery. Salon booking. Software with a purpose.", detail: "Wings Citi Cafe · True Star · Urmi", link: "See selected work", href: "#work" },
-    { label: "04 / THE FOUNDATION", title: "More than\nthe interface.", body: "Production experience at Verizon. End-to-end product ownership at Rotgen.", detail: "Experience + toolbox", link: "Read the experience", href: "#experience" },
-    { label: "05 / BACK TO THE PERSON", title: "Let’s build\nsomething useful.", body: "A conversation is a good place to start.", detail: "Open to internships", link: "Get in touch", href: "#contact" },
+    { label: "04 / WHAT I BRING", title: "More than\nthe interface.", body: "Production experience at Verizon. End-to-end product ownership at Rotgen.", detail: "Experience + toolbox", link: "Read the experience", href: "#experience" },
+    { label: "05 / LET’S CONNECT", title: "Let’s build\nsomething useful.", body: "A conversation is a good place to start.", detail: "Open to internships", link: "Get in touch", href: "#contact" },
   ],
 };

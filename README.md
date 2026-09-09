@@ -26,7 +26,7 @@ A few highlights from the work featured on this site:
 | Framework | Next.js 15 (App Router) |
 | Language | TypeScript |
 | Styling | Tailwind CSS v4 |
-| Animation | Framer Motion |
+| Animation | Native video chapters + CSS transitions |
 | Icons | Lucide React |
 | Deployment | Vercel |
 
@@ -34,13 +34,14 @@ A few highlights from the work featured on this site:
 
 ## Features
 
-- Typing animation hero with rotating role titles
-- Scroll-synced progress bar in the navigation
-- Project modal with live/GitHub links and tech stack tags
-- Experience timeline with expandable accordion entries
-- Animated skill marquee (Toolbox section)
-- Custom cursor with hover states
-- Fully responsive — mobile-first layout
+- Warm ivory and blue visual theme with prominent resume and contact links
+- One scroll plays one video chapter, then pauses indefinitely for reading
+- Accessible five-dot chapter navigation; Skip and reduced-motion fallback
+- Native 60 fps video playback by default, with an optional upscaled/interpolated 4K 120 fps mode
+- Server-rendered project, experience, and toolbox content
+- Responsive project cards with live preview dialogs
+
+Video sources were generated at 1440×1920 / 24 fps. Enhanced outputs use motion interpolation and scaling; 120 fps presentation depends on the browser, display, and device. The default avoids loading the larger 4K files. Playback runs in the browser video pipeline, without per-frame React renders or canvas image requests.
 
 ---
 

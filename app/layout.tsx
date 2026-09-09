@@ -30,7 +30,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://aavashlamichhane.com"),
-  title: "Aavash Lamichhane — Builder of AI-native Products",
+  title: "Aavash Lamichhane — Developer & Rutgers CS Student",
   description:
     "Portfolio of Aavash Lamichhane. CS student at Rutgers. Founder of Portlock Labs. Developer of Rotgen ($30K MRR).",
   keywords: [
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Aavash Lamichhane" }],
   openGraph: {
-    title: "Aavash Lamichhane — Builder of AI-native Products",
+    title: "Aavash Lamichhane — Developer & Rutgers CS Student",
     description:
       "Portfolio of Aavash Lamichhane. CS student at Rutgers. Founder of Portlock Labs. Developer of Rotgen ($30K MRR).",
     url: "https://aavashlamichhane.com",
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Aavash Lamichhane — Builder of AI-native Products",
+    title: "Aavash Lamichhane — Developer & Rutgers CS Student",
     description: "CS student at Rutgers. Founder. Developer of Rotgen ($30K MRR).",
     images: ["/og.png"],
   },
