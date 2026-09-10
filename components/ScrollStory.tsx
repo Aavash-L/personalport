@@ -122,9 +122,9 @@ export function ScrollStory() {
       if (direction && (state.current.playing || (!e.repeat && start(direction)))) e.preventDefault();
     };
     const click = (e: MouseEvent) => {
-      const link = (e.target as HTMLElement).closest('a[href^="#"]');
+      const link = (e.target as HTMLElement).closest('a[href^="#"],a[href^="/#"]');
       if (!link) return;
-      if (link.getAttribute("href") === "#top") { state.current.bypassed = false; return; }
+      if (link.getAttribute("href")?.endsWith("#top")) { state.current.bypassed = false; return; }
       skip();
     };
     const reduce = () => { if (reduced.matches) { skip(); setEnabled(false); } };

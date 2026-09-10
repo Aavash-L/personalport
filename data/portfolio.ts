@@ -30,7 +30,7 @@ export const PROJECTS: Project[] = [
     id: "urmi",
     name: "Urmi Threading Salon",
     tagline: "Beauty salon site with booking and gallery",
-    stack: ["HTML", "CSS", "SEO", "VERCEL"],
+    stack: ["NEXT.JS", "TYPESCRIPT", "SUPABASE", "RESEND"],
     metric: "BOOKING + GALLERY",
     status: "LIVE",
     url: "https://urmithreadingsalon.com",
@@ -41,7 +41,7 @@ export const PROJECTS: Project[] = [
     name: "Rotgen",
     tagline: "AI-powered short-form video generation for creators",
     stack: ["NEXT.JS", "TYPESCRIPT", "PYTHON", "STRIPE", "OPENAI"],
-    metric: "$30K MRR · SOLE DEVELOPER",
+    metric: "AI VIDEO PLATFORM",
     status: "LIVE",
     url: "https://rotgen.org",
     screenshotPath: "/projects/rotgen.png",
@@ -57,10 +57,10 @@ export const EXPERIENCE: ExperienceItem[] = [
     id: "rotgen",
     dateRange: "Feb 2026 — Present",
     role: "Developer",
-    company: "Rotgen.org · Contract",
+    company: "Rotgen.org",
     location: "REMOTE",
     description:
-      "Sole developer behind Rotgen.org — an AI-powered short-form video generator for creators. $30K MRR.",
+      "Developer of Rotgen.org, an AI-powered short-form video platform for creators.",
     bullets: [
       "Built and shipped the full product end-to-end: Next.js 15, TypeScript, Tailwind, deployed on Vercel",
       "Integrated AI video generation pipeline with direct publishing to YouTube, TikTok, and Instagram via OAuth",
@@ -83,62 +83,16 @@ export const EXPERIENCE: ExperienceItem[] = [
     ],
   },
   {
-    id: "renewal",
-    dateRange: "May 2025 — Aug 2025",
-    role: "Data Entry & Sales",
-    company: "Renewal by Andersen",
-    location: "ON-SITE",
-    description: "Represented the brand at events and maintained customer data in CRM and Google Sheets.",
-    bullets: [
-      "Represented the brand at promotional events, generating leads and building brand awareness",
-      "Entered and maintained customer data in Google Sheets and company CRM with high accuracy",
-      "Communicated product benefits to diverse audiences, strengthening customer interest",
-    ],
-  },
-  {
-    id: "bestbuy",
-    dateRange: "Nov 2024 — May 2025",
-    role: "Retail Sales Associate",
-    company: "Best Buy · Seasonal",
-    location: "ON-SITE",
-    description: "Seasonal retail sales associate — advised customers on electronics and drove in-store sales.",
-  },
-  {
     id: "portlock",
     dateRange: "Jan 2024 — Present",
     role: "Founder",
     company: "Portlock Labs",
     location: "REMOTE",
-    description: "Subscription-based education platform for emerging crypto and AI markets. $500K+ in partnership deals.",
+    description: "Subscription-based education company focused on crypto and AI markets.",
     bullets: [
       "Built a subscription-based educational company to help people learn about crypto and AI markets",
       "Closed over $500K in partnership deals by leveraging social platforms and networks",
       "Host weekly online events and publish a weekly newsletter on crypto and AI markets",
-    ],
-  },
-  {
-    id: "pals",
-    dateRange: "Jan 2024 — Sep 2024",
-    role: "Tutor",
-    company: "PALS Learning Center",
-    location: "ON-SITE",
-    description: "Tutored English and Math to middle and high school students.",
-    bullets: [
-      "Tutored English and Math to middle and high school students",
-      "Tracked and managed student progress data using the EdQuill database",
-      "Adapted teaching methods to suit different learning styles and age groups",
-    ],
-  },
-  {
-    id: "amazon",
-    dateRange: "Dec 2023 — Feb 2024",
-    role: "Online Arbitrage",
-    company: "Amazon Seller · Self-employed",
-    location: "ON-SITE",
-    description: "Managed an online resale business on Amazon, generating over $50,000 in sales.",
-    bullets: [
-      "Generated over $50,000 in sales through sourcing and listing products on Amazon",
-      "Used market research and sales analytics to identify profitable opportunities",
     ],
   },
   {
@@ -147,7 +101,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     role: "Data Analyst & Co-Founder",
     company: "Squishy Squad",
     location: "REMOTE",
-    description: "Scaled an online community to 45K+ members. Raised $2M+. Closed $3M+ in brand deals.",
+    description: "Co-founded an online community and worked on its website and infrastructure.",
     bullets: [
       "Raised over $2M by connecting with 4,000+ people across social platforms",
       "Established $3M+ in partnership deals through leveraging social networks",
@@ -160,11 +114,7 @@ export const EXPERIENCE: ExperienceItem[] = [
 // ─── STATS ───────────────────────────────────────────────────────────────────
 // To update stats: edit the value strings below.
 
-export const STATS: Stat[] = [
-  { value: "$30K", label: "MONTHLY RECURRING REVENUE — ROTGEN" },
-  { value: "45K+", label: "COMMUNITY MEMBERS BUILT — SQUISHY SQUAD" },
-  { value: "$3M+", label: "IN DEALS CLOSED ACROSS VENTURES" },
-];
+export const STATS: Stat[] = []; // Publish engineering numbers only after measurement is confirmed.
 
 // ─── TECH STACK ───────────────────────────────────────────────────────────────
 
@@ -201,8 +151,8 @@ export const CONTACT_LINKS: ContactLink[] = [
   },
   {
     platform: "LINKEDIN",
-    value: "linkedin.com/in/aavashlamichhane",
-    href: "https://www.linkedin.com/in/aavashlamichhane/",
+    value: "linkedin.com/in/aavash-lamichhane-1068622a5",
+    href: "https://www.linkedin.com/in/aavash-lamichhane-1068622a5/",
   },
   {
     platform: "GITHUB",
@@ -212,45 +162,30 @@ export const CONTACT_LINKS: ContactLink[] = [
 ];
 
 export const BIO = [
-  "I build full-stack AI products and ship them. Currently the sole developer behind Rotgen, an AI video platform doing $30K MRR, and the founder of Portlock Labs, an education company in emerging markets.",
-  "I'm a CS student at Rutgers, minoring in Economics, graduating in 2028. I've been writing code since high school and shipping real software since 2022 — first NFTs and Web3 communities, now AI-native consumer products.",
-  "What I care about right now: small teams, fast iteration, products that earn revenue from day one. I'm looking for SWE and product-data internships where I can build things people use.",
+  "I’m a junior studying Computer Science at Rutgers–New Brunswick, with an Economics minor, graduating in 2028. I’m targeting Summer 2027 software engineering internships.",
+  "I previously shipped React and TypeScript components to production on a payments team at Verizon. My portfolio brings together product development, client work through ClearForge Labs, and source-linked technical walkthroughs.",
+  "I’m based in New Jersey and open to New York City opportunities. I’m available full-time in summer and part-time during the semester, and open to a Fall 2026 co-op or winter program.",
 ];
 export const TOOLBOX = [
-  {
-    label: "FRONTEND",
-    items: ["TypeScript", "React", "Next.js", "Tailwind CSS", "Framer Motion", "HTML5", "CSS3", "Shadcn/ui", "Radix UI"],
-  },
-  {
-    label: "BACKEND",
-    items: ["Python", "Node.js", "PostgreSQL", "REST APIs", "OAuth", "SQL", "Supabase", "Prisma", "Express", "FastAPI"],
-  },
-  {
-    label: "AI / LLM",
-    items: ["OpenAI API", "Claude API", "LLM Integration", "Prompt Engineering", "Vision Models", "pandas", "NumPy", "LangChain"],
-  },
-  {
-    label: "TOOLS & INFRA",
-    items: ["Git", "GitHub", "Figma", "Stripe", "Vercel", "Docker", "Solidity", "Playwright", "Postman"],
-  },
+  { label: "APPLICATION DEVELOPMENT", items: ["TypeScript", "JavaScript", "React", "Next.js", "React Native", "Tailwind CSS", "HTML / CSS"] },
+  { label: "DATA, INTEGRATIONS & DELIVERY", items: ["PostgreSQL", "Supabase", "Stripe", "Resend", "Git", "Vercel", "Vitest"] },
 ];
-
 export const SITE = {
-  name: "Aavash Lamichhane", initials: "AL", availability: "Open to internships",
+  name: "Aavash Lamichhane", initials: "AL", availability: "Seeking Summer 2027 SWE internships",
   intro: "Hey, I’m Aavash.", subtitle: "CS student at Rutgers. Full-stack & AI developer.",
-  location: "New Jersey", education: "Rutgers University · CS + Economics minor · 2028",
+  location: "New Jersey", education: "Rutgers–New Brunswick · CS junior · Economics minor · 2028",
   resume: "/Aavash.Lamichhane_SWE_Resume.pdf", portrait: "/story/poster.webp", portraitOriginal: "/Aavash_PFP.png",
   logo: "/brand/al.svg", manifest: "/story/manifest.json",
-  workTitle: "Ideas are a start.\nShipping is the work.",
+  workTitle: "The work,\nand how it works.",
   aboutTitle: "A person behind\nevery product.", experienceTitle: "Built on experience.",
   toolboxTitle: "The tools change.\nThe curiosity stays.",
   contactTitle: "Let’s build\nsomething useful.",
-  contactText: "Looking for SWE and product-data internships. Have a role or a project in mind? Let’s talk.",
+  contactText: "Seeking Summer 2027 SWE internships. Full-time in summer; part-time during the semester. Also open to a Fall 2026 co-op or winter program. Based in NJ, open to NYC.",
   chapters: [
-    { label: "01 / NICE TO MEET YOU", title: "Hey, I’m\nAavash.", body: "CS student at Rutgers. Full-stack & AI developer.", detail: "New Jersey · Class of 2028", link: "Explore the work", href: "#work" },
-    { label: "THE PRODUCT", title: "From idea\nto shipped.", body: "Rotgen. AI-powered short-form video generation for creators.", detail: "$30K MRR · Sole developer", link: "Visit Rotgen", href: "https://rotgen.org" },
+    { label: "01 / NICE TO MEET YOU", title: "Hey, I’m\nAavash.", body: "Rutgers CS junior. Previously SWE intern at Verizon. Building for the web.", detail: "Summer 2027 SWE internships · NJ / NYC · Class of 2028", link: "Explore the work", href: "#work" },
+    { label: "THE PRODUCT", title: "From idea\nto shipped.", body: "Rotgen. AI-powered short-form video generation for creators.", detail: "$30K MRR · owner-reported product context", link: "Visit Rotgen", href: "https://rotgen.org" },
     { label: "THE RANGE", title: "Built for\nreal businesses.", body: "Restaurant ordering. Contractor discovery. Salon booking. Software with a purpose.", detail: "Wings Citi Cafe · True Star · Urmi", link: "See selected work", href: "#work" },
-    { label: "WHAT I BRING", title: "More than\nthe interface.", body: "Production experience at Verizon. End-to-end product ownership at Rotgen.", detail: "Experience + toolbox", link: "Read the experience", href: "#experience" },
-    { label: "LET’S CONNECT", title: "Let’s build\nsomething useful.", body: "A conversation is a good place to start.", detail: "Open to internships", link: "Get in touch", href: "#contact" },
+    { label: "WHAT I BRING", title: "More than\nthe interface.", body: "Production experience at Verizon. Product development at Rotgen.", detail: "Experience + toolbox", link: "Read the experience", href: "#experience" },
+    { label: "LET’S CONNECT", title: "Let’s build\nsomething useful.", body: "A conversation is a good place to start.", detail: "Summer 2027 SWE internships", link: "Get in touch", href: "#contact" },
   ],
 };

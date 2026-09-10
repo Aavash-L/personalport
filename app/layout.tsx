@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://aavashlamichhane.com"),
   title: "Aavash Lamichhane — Developer & Rutgers CS Student",
   description:
-    "Portfolio of Aavash Lamichhane. CS student at Rutgers. Founder of Portlock Labs. Developer of Rotgen ($30K MRR).",
+    "Rutgers–New Brunswick CS junior, class of 2028. Former Verizon SWE intern seeking Summer 2027 software engineering internships.",
   keywords: [
     "Aavash Lamichhane",
     "full-stack developer",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Aavash Lamichhane — Developer & Rutgers CS Student",
     description:
-      "Portfolio of Aavash Lamichhane. CS student at Rutgers. Founder of Portlock Labs. Developer of Rotgen ($30K MRR).",
+      "Rutgers–New Brunswick CS junior, class of 2028. Former Verizon SWE intern seeking Summer 2027 software engineering internships.",
     url: "https://aavashlamichhane.com",
     siteName: "Aavash Lamichhane",
     images: [{ url: "/og.png", width: 1200, height: 630 }],
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Aavash Lamichhane — Developer & Rutgers CS Student",
-    description: "CS student at Rutgers. Founder. Developer of Rotgen ($30K MRR).",
+    description: "Rutgers CS junior and former Verizon SWE intern. Seeking Summer 2027 SWE internships.",
     images: ["/og.png"],
   },
   robots: { index: true, follow: true },

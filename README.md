@@ -10,12 +10,9 @@ Personal portfolio site. Built to be fast, clean, and easy to maintain.
 
 CS student at Rutgers University, minoring in Economics. I build products end-to-end — from landing pages to full-stack SaaS. Currently open to software engineering internships.
 
-A few highlights from the work featured on this site:
+Engineering evidence on the site includes a Verizon SWE internship, source-linked walkthroughs of Urmi booking, Huddle availability ranking, and ClearForge subscription synchronization. Rotgen remains an overview until its implementation is available for review.
 
-- **Rotgen.org** — sole developer on an AI short-form video generator doing $30K MRR, with direct publishing to YouTube, TikTok, and Instagram via OAuth
-- **Portlock Labs** — founder of a crypto/AI education platform; closed $500K+ in partnership deals
-- **Squishy Squad** — scaled a community to 45K+ members, raised $2M+, closed $3M+ in brand deals
-- **Verizon (SWE Intern)** — shipped React/TypeScript payment components to production on a payments team
+Availability: Summer 2027 SWE internships (full-time), part-time during the semester, and open to a Fall 2026 co-op or winter program. Based in NJ, open to NYC.
 
 ---
 
@@ -47,4 +44,4 @@ Video sources were generated at 1440×1920 / 24 fps and motion-interpolated for 
 
 ## Contact
 
-[alamichhane158@gmail.com](mailto:alamichhane158@gmail.com) &nbsp;·&nbsp; [LinkedIn](https://www.linkedin.com/in/aavashlamichhane/) &nbsp;·&nbsp; [GitHub](https://github.com/Aavash-L)
+[alamichhane158@gmail.com](mailto:alamichhane158@gmail.com) &nbsp;·&nbsp; [LinkedIn](https://www.linkedin.com/in/aavash-lamichhane-1068622a5/) &nbsp;·&nbsp; [GitHub](https://github.com/Aavash-L)
