@@ -63,7 +63,17 @@ export function ScrollStory() {
       });
       return true;
     };
-    const leaveStory = () => { skip(); document.getElementById("work")?.scrollIntoView({behavior: "smooth"}); };
+    const finishChapter = () => {
+      const s = state.current;
+      if (!s.playing) return;
+      // Settle directly on this clip's final reading state, without leaving the story.
+      s.playing = false;
+      v.pause();
+      s.chapter = Math.min(4, s.chapter + 1);
+      s.readyAt = performance.now() + 600;
+      setChapter(s.chapter); setPlaying(false); setLoading(false);
+      setVisibleVideo(false); setShowCopy(true); setError("");
+    };
     let skipDistance = 0;
     const wheel = (e: WheelEvent) => {
       const now = performance.now();
@@ -76,7 +86,7 @@ export function ScrollStory() {
         // Ignore the initiating gesture's brief momentum, then honor continued scrolling.
         if (now - s.startedAt > 650 && e.deltaY > 0) {
           skipDistance += e.deltaY * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? innerHeight : 1);
-          if (skipDistance >= 100) leaveStory();
+          if (skipDistance >= 100) finishChapter();
         }
         wheelReady = false; wheelDistance = 0; return;
       }
@@ -97,7 +107,7 @@ export function ScrollStory() {
       if (!inStory() || state.current.bypassed) return;
       if (state.current.playing) {
         e.preventDefault();
-        if (!touchUsed && touchY - (e.touches[0]?.clientY ?? touchY) > 30) { touchUsed = true; leaveStory(); }
+        if (!touchUsed && touchY - (e.touches[0]?.clientY ?? touchY) > 30) { touchUsed = true; finishChapter(); }
         return;
       }
       const dy = touchY - (e.touches[0]?.clientY ?? touchY);
@@ -108,7 +118,7 @@ export function ScrollStory() {
       if ((e.target as HTMLElement).closest("a,button,input,textarea,select") || !inStory()) return;
       if (e.key === "Escape") { skip(); document.getElementById("work")?.scrollIntoView(); return; }
       const direction = ["ArrowDown", "PageDown", " "].includes(e.key) ? 1 : ["ArrowUp", "PageUp"].includes(e.key) ? -1 : 0;
-      if (direction > 0 && state.current.playing) { e.preventDefault(); leaveStory(); return; }
+      if (direction > 0 && state.current.playing) { e.preventDefault(); finishChapter(); return; }
       if (direction && (state.current.playing || (!e.repeat && start(direction)))) e.preventDefault();
     };
     const click = (e: MouseEvent) => {
@@ -167,7 +177,7 @@ export function ScrollStory() {
       </div>)}</div>
       {enabled && <nav className="chapter-dots" aria-label="Story chapters">{chapterNames.map((name, i) => <button key={name} aria-label={`${i + 1}. ${name}`} aria-current={chapter === i ? "step" : undefined} disabled={playing} onClick={() => jump(i)}><span className="chapter-number">{String(i + 1).padStart(2, "0")}</span><i /><span className="chapter-tooltip">{name}</span></button>)}</nav>}
       <div className="story-bottom"><span className="availability"><i />{SITE.availability}</span>
-        <span className="playback-cue" role="status">{error || (loading ? "Loading the next chapter…" : playing ? "Keep scrolling to skip ↓" : chapter === 4 ? "Keep scrolling to explore ↓" : enabled ? "Scroll for the next chapter ↓" : "Get to know my work")}</span>
+        <span className="playback-cue" role="status">{error || (loading ? "Loading the next chapter…" : playing ? "Scroll again to finish this chapter ↓" : chapter === 4 ? "Keep scrolling to explore ↓" : enabled ? "Scroll for the next chapter ↓" : "Get to know my work")}</span>
         <a href="#work" className="skip" onClick={skip}>{enabled ? "Skip to work" : "View selected work"} ↓</a>
       </div>
     </div>
