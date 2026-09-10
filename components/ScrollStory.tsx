@@ -16,7 +16,7 @@ export function ScrollStory() {
   const [visibleVideo, setVisibleVideo] = useState(false);
   const [showCopy, setShowCopy] = useState(true);
   const [error, setError] = useState("");
-  const state = useRef({ chapter: 0, playing: false, bypassed: false, readyAt: 0 });
+  const state = useRef({ chapter: 0, playing: false, bypassed: false, readyAt: 0, startedAt: 0 });
   const poster = chapter === 0 ? "/story/video/start.webp" : `/story/video/end-${chapter}.webp`;
 
   function jump(index: number) {
@@ -50,6 +50,7 @@ export function ScrollStory() {
       if (direction < 0) { if (s.chapter > 0) { jump(s.chapter - 1); return true; } return false; }
       if (s.chapter >= 4) return false;
       window.scrollTo({top: window.scrollY + section.current!.getBoundingClientRect().top, behavior: "instant"});
+      s.startedAt = performance.now();
       s.playing = true;
       setPlaying(true); setLoading(true); setError(""); setVisibleVideo(false);
       const source = `/story/video/chapter-${s.chapter + 1}.mp4`;
@@ -62,13 +63,23 @@ export function ScrollStory() {
       });
       return true;
     };
+    const leaveStory = () => { skip(); document.getElementById("work")?.scrollIntoView({behavior: "smooth"}); };
+    let skipDistance = 0;
     const wheel = (e: WheelEvent) => {
       const now = performance.now();
       if (now - wheelAt > 180) { wheelDistance = 0; wheelReady = true; }
       wheelAt = now;
       const s = state.current;
       if (!inStory() || s.bypassed || e.ctrlKey || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
-      if (s.playing) { wheelReady = false; wheelDistance = 0; e.preventDefault(); return; }
+      if (s.playing) {
+        e.preventDefault();
+        // Ignore the initiating gesture's brief momentum, then honor continued scrolling.
+        if (now - s.startedAt > 650 && e.deltaY > 0) {
+          skipDistance += e.deltaY * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? innerHeight : 1);
+          if (skipDistance >= 100) leaveStory();
+        }
+        wheelReady = false; wheelDistance = 0; return;
+      }
       if ((e.deltaY > 0 && s.chapter < 4) || (e.deltaY < 0 && s.chapter > 0)) {
         e.preventDefault();
         if (!wheelReady || now < s.readyAt) return;
@@ -77,14 +88,18 @@ export function ScrollStory() {
         if (Math.sign(delta) !== Math.sign(wheelDistance)) wheelDistance = 0;
         wheelDistance += delta;
         if (Math.abs(wheelDistance) >= 8 && start(wheelDistance > 0 ? 1 : -1)) {
-          wheelReady = false; wheelDistance = 0;
+          wheelReady = false; wheelDistance = 0; skipDistance = 0;
         }
       }
     };
     const touchStart = (e: TouchEvent) => { touchY = e.touches[0]?.clientY ?? 0; touchUsed = false; };
     const touchMove = (e: TouchEvent) => {
       if (!inStory() || state.current.bypassed) return;
-      if (state.current.playing) { e.preventDefault(); return; }
+      if (state.current.playing) {
+        e.preventDefault();
+        if (!touchUsed && touchY - (e.touches[0]?.clientY ?? touchY) > 30) { touchUsed = true; leaveStory(); }
+        return;
+      }
       const dy = touchY - (e.touches[0]?.clientY ?? touchY);
       if (touchUsed) return;
       if (Math.abs(dy) > 15) { touchUsed = true; if (start(dy > 0 ? 1 : -1)) e.preventDefault(); }
@@ -93,6 +108,7 @@ export function ScrollStory() {
       if ((e.target as HTMLElement).closest("a,button,input,textarea,select") || !inStory()) return;
       if (e.key === "Escape") { skip(); document.getElementById("work")?.scrollIntoView(); return; }
       const direction = ["ArrowDown", "PageDown", " "].includes(e.key) ? 1 : ["ArrowUp", "PageUp"].includes(e.key) ? -1 : 0;
+      if (direction > 0 && state.current.playing) { e.preventDefault(); leaveStory(); return; }
       if (direction && (state.current.playing || (!e.repeat && start(direction)))) e.preventDefault();
     };
     const click = (e: MouseEvent) => {
@@ -151,7 +167,7 @@ export function ScrollStory() {
       </div>)}</div>
       {enabled && <nav className="chapter-dots" aria-label="Story chapters">{chapterNames.map((name, i) => <button key={name} aria-label={`${i + 1}. ${name}`} aria-current={chapter === i ? "step" : undefined} disabled={playing} onClick={() => jump(i)}><span className="chapter-number">{String(i + 1).padStart(2, "0")}</span><i /><span className="chapter-tooltip">{name}</span></button>)}</nav>}
       <div className="story-bottom"><span className="availability"><i />{SITE.availability}</span>
-        <span className="playback-cue" role="status">{error || (loading ? "Loading the next chapter…" : playing ? "A little look inside…" : chapter === 4 ? "Keep scrolling to explore ↓" : enabled ? "Scroll for the next chapter ↓" : "Get to know my work")}</span>
+        <span className="playback-cue" role="status">{error || (loading ? "Loading the next chapter…" : playing ? "Keep scrolling to skip ↓" : chapter === 4 ? "Keep scrolling to explore ↓" : enabled ? "Scroll for the next chapter ↓" : "Get to know my work")}</span>
         <a href="#work" className="skip" onClick={skip}>{enabled ? "Skip to work" : "View selected work"} ↓</a>
       </div>
     </div>
