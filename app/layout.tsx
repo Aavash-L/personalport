@@ -29,10 +29,10 @@ const jetbrainsMono = JetBrains_Mono({
 // ─── Metadata ──────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://aavashlamichhane.com"),
-  title: "Aavash Lamichhane — Developer & Rutgers CS Student",
+  metadataBase: new URL("https://www.aavashlamichhane.com"),
+  title: "Aavash Lamichhane — Software Developer",
   description:
-    "Rutgers–New Brunswick CS junior, class of 2028. Former Verizon SWE intern seeking Summer 2027 software engineering internships.",
+    "Thoughtful software, real-world work. Rutgers CS student and former Verizon SWE intern. Explore my projects and how they work.",
   keywords: [
     "Aavash Lamichhane",
     "full-stack developer",
@@ -45,20 +45,20 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Aavash Lamichhane" }],
   openGraph: {
-    title: "Aavash Lamichhane — Developer & Rutgers CS Student",
+    title: "Aavash Lamichhane — Software Developer",
     description:
-      "Rutgers–New Brunswick CS junior, class of 2028. Former Verizon SWE intern seeking Summer 2027 software engineering internships.",
-    url: "https://aavashlamichhane.com",
+      "Thoughtful software, real-world work. Rutgers CS student and former Verizon SWE intern. Explore my projects and how they work.",
+    url: "https://www.aavashlamichhane.com",
     siteName: "Aavash Lamichhane",
-    images: [{ url: "/og.png", width: 1200, height: 630 }],
+    images: [{ url: "/share-card", width: 1200, height: 630, type: "image/png", alt: "Aavash Lamichhane — Software Developer, Rutgers CS, previously Verizon" }],
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Aavash Lamichhane — Developer & Rutgers CS Student",
+    title: "Aavash Lamichhane — Software Developer",
     description: "Rutgers CS junior and former Verizon SWE intern. Seeking Summer 2027 SWE internships.",
-    images: ["/og.png"],
+    images: ["/share-card"],
   },
   robots: { index: true, follow: true },
   icons: {
