@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { SITE, PROJECTS } from "@/data/portfolio";
 
+// Keep short transitions readable and make the longer opening/return clips brisk.
+const chapterPlaybackRates = [2, 1.5, 1.5, 3];
 const chapterNames = ["Introduction", "Rotgen", "Client work", "Experience", "Contact"];
 export function ScrollStory() {
   const section = useRef<HTMLElement>(null);
@@ -52,6 +54,7 @@ export function ScrollStory() {
       setPlaying(true); setLoading(true); setError(""); setVisibleVideo(false);
       const source = `/story/video/chapter-${s.chapter + 1}.mp4`;
       if (!v.src.endsWith(source)) { v.src = source; v.load(); } else { v.currentTime = 0; }
+      v.playbackRate = chapterPlaybackRates[s.chapter];
       v.play().catch(() => {
         if (!s.playing) return;
         s.playing = false; setPlaying(false); setLoading(false); setShowCopy(true);
