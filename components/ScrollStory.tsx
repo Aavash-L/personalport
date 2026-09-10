@@ -39,9 +39,11 @@ export function ScrollStory() {
     const v = video.current!;
     v.src = "/story/video/chapter-1.mp4";
     v.load();
-    let wheelAt = 0, wheelDistance = 0, wheelReady = true, touchY = 0, touchUsed = false;
+    let wheelAt = 0, wheelDistance = 0, wheelReady = true, touchY = 0, touchX = 0, touchUsed = false, touchCaptured = false, touchIgnored = false;
     const inStory = () => {
       const r = section.current!.getBoundingClientRect();
+      // Short screens must be able to scroll to read the entire story.
+      if (r.height > innerHeight + 2) return false;
       return r.top <= innerHeight * 0.25 && r.bottom >= innerHeight * 0.6;
     };
     const start = (direction: number) => {
@@ -102,17 +104,31 @@ export function ScrollStory() {
         }
       }
     };
-    const touchStart = (e: TouchEvent) => { touchY = e.touches[0]?.clientY ?? 0; touchUsed = false; };
+    const touchStart = (e: TouchEvent) => {
+      touchY = e.touches[0]?.clientY ?? 0;
+      touchX = e.touches[0]?.clientX ?? 0;
+      touchUsed = false; touchCaptured = false;
+      touchIgnored = e.touches.length !== 1 || !!(e.target as HTMLElement).closest("a,button,input,textarea,select,dialog");
+    };
     const touchMove = (e: TouchEvent) => {
-      if (!inStory() || state.current.bypassed) return;
+      // Leave pinch zoom, horizontal gestures, and interactive controls to the browser.
+      if (touchIgnored || e.touches.length !== 1 || !inStory() || state.current.bypassed) return;
+      const dy = touchY - e.touches[0].clientY;
+      const dx = touchX - e.touches[0].clientX;
+      if (!touchCaptured && Math.abs(dx) > Math.abs(dy)) return;
+      if (touchCaptured) { e.preventDefault(); return; }
       if (state.current.playing) {
         e.preventDefault();
-        if (!touchUsed && touchY - (e.touches[0]?.clientY ?? touchY) > 30) { touchUsed = true; finishChapter(); }
+        if (!touchUsed && dy > 30) {
+          touchUsed = true; touchCaptured = true; finishChapter();
+        }
         return;
       }
-      const dy = touchY - (e.touches[0]?.clientY ?? touchY);
-      if (touchUsed) return;
-      if (Math.abs(dy) > 15) { touchUsed = true; if (start(dy > 0 ? 1 : -1)) e.preventDefault(); }
+      if (!touchUsed && Math.abs(dy) > 15) {
+        touchUsed = true;
+        touchCaptured = start(dy > 0 ? 1 : -1);
+        if (touchCaptured) e.preventDefault();
+      }
     };
     const key = (e: KeyboardEvent) => {
       if ((e.target as HTMLElement).closest("a,button,input,textarea,select") || !inStory()) return;

@@ -41,3 +41,39 @@ body{background:var(--ink);color:var(--chalk)}
 .recruiter-summary{display:flex;align-items:center;justify-content:space-between;gap:40px;padding-top:55px;padding-bottom:55px;background:var(--surface);max-width:none}.recruiter-summary h2{font-size:clamp(28px,3vw,44px);margin-bottom:16px;letter-spacing:-.04em}.recruiter-summary .eyebrow{margin-bottom:18px}.recruiter-summary .button{flex-shrink:0}.study-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-bottom:65px}.study-card{padding:30px;border:1px solid var(--line);border-radius:20px;background:#fff;transition:transform .2s}.study-card:hover{transform:translateY(-4px)}.study-card h3{font-size:28px;line-height:1.2;margin-bottom:20px}.study-card .eyebrow{font-size:10px;margin-bottom:20px}.study-card p{font-size:15px}.study-card .text-link{font-size:12px;gap:0}.client-heading{font-size:30px;margin-bottom:30px}.project-actions{display:flex;flex-wrap:wrap;gap:14px 22px;margin-top:25px;font-size:12px;color:var(--signal)}.project-actions>span{color:var(--muted)}.case-page{padding-top:150px;max-width:1200px}.case-page>.eyebrow{margin-top:45px}.case-page h1{font-size:clamp(42px,5.5vw,80px);line-height:1.07;letter-spacing:-.05em;max-width:900px}.case-summary{margin-top:28px;max-width:760px;font-size:21px}.case-body{margin-top:65px}.case-body section{padding:36px 0;border-top:1px solid var(--line)}.case-body h2{font-size:30px;letter-spacing:-.035em;margin:0 0 20px}.case-body p{max-width:800px}.architecture{margin:25px 0;display:flex;flex-wrap:wrap;gap:12px;align-items:center}.architecture>div{display:flex;align-items:center;gap:12px}.architecture span{display:block;max-width:175px;padding:20px;background:var(--surface);border:1px solid var(--line);border-radius:14px;font-size:14px}.architecture b{font-weight:400;color:var(--signal)}.architecture figcaption{flex-basis:100%;font-size:12px;color:var(--muted);margin-top:12px}.source-links{padding-left:20px;overflow-wrap:anywhere;font-size:14px;line-height:2;color:var(--signal)}@media(max-width:850px){.study-grid{grid-template-columns:1fr}.recruiter-summary{flex-direction:column;align-items:flex-start}.recruiter-summary .button{width:auto}.case-page{padding-top:125px}.architecture{flex-direction:column;align-items:stretch}.architecture>div{flex-direction:column;align-items:stretch}.architecture span{max-width:none}.architecture b{transform:rotate(90deg);align-self:center}.case-summary{font-size:18px}.availability{max-width:65%;line-height:1.5}}
 
 .technical-heading{margin-top:70px}
+
+/* Comfortable touch targets and resilient narrow-screen layouts. */
+.project-main,.study-card,.tools>div{min-width:0}
+.email-dialog{max-height:calc(100dvh - 32px);overflow-y:auto;overscroll-behavior:contain}
+.email-close{width:44px;height:44px;display:grid;place-items:center;line-height:1}
+@media(max-width:850px){
+  .navigation nav a,.contact-links a,.project-actions a,.case-page>.minor,footer a{min-height:44px;display:inline-flex;align-items:center}
+  .project-actions{gap:6px 20px}
+  .case-page .button{gap:20px;line-height:1.5}
+  .source-links a{display:inline-block;padding:8px 0;line-height:1.6}
+  .architecture{margin-inline:0}
+}
+@media(max-width:800px){
+  .chapter-dots button{min-height:44px;min-width:44px}
+  .skip,.text-link,.intro-resume{min-height:44px;display:inline-flex;align-items:center}
+  .availability i{flex-shrink:0}
+  .contact-section h2{font-size:clamp(44px,10vw,72px);overflow-wrap:anywhere}
+  .study-card{padding:24px}
+  .story-bottom{bottom:max(14px,env(safe-area-inset-bottom))}
+}
+@media(max-width:360px){
+  :root{--gutter:20px}
+  .navigation nav{gap:12px}
+  .nav-resume{padding:12px 14px}
+  .brand-mark{width:44px;height:44px}
+  .intro-resume{margin-left:14px}
+  .project{grid-template-columns:22px minmax(0,1fr);gap:10px}
+}
+@media(max-width:800px) and (max-height:720px){
+  /* Flow the reading area naturally when the viewport is too short for a full chapter. */
+  .video-story .story-stage{height:auto;min-height:100svh;padding-bottom:1px}
+  .story-media{top:88px;height:180px}
+  .story-product,.range-active .story-product{top:88px}
+  .story-copy-wrap{position:relative;top:auto;height:auto;padding:300px var(--gutter) 0}
+  .story-bottom{position:relative;left:auto;right:auto;bottom:auto;margin:28px var(--gutter) 0;padding-bottom:max(14px,env(safe-area-inset-bottom))}
+}
