@@ -1,22 +1,17 @@
 import type { NextConfig } from "next";
 
-// REMINDER: For each project you own (Rotgen, Mogfit, Dominus, True Star, Wings Citi, Urmi),
-// add these headers to allow iframe embedding from your portfolio domain:
-//
-// async headers() {
-//   return [{
-//     source: '/(.*)',
-//     headers: [
-//       { key: 'Content-Security-Policy', value: "frame-ancestors 'self' https://aavashlamichhane.com" }
-//     ]
-//   }]
-// }
-
 const nextConfig: NextConfig = {
   // Prevents false-positive workspace root detection when this project
   // is inside a parent directory that also has a package-lock.json.
   outputFileTracingRoot: process.cwd(),
   distDir: process.env.NEXT_BUILD_DIR || ".next",
+
+  // Serve the lightweight homepage before App Router pages.
+  async rewrites() {
+    return {
+      beforeFiles: [{ source: "/", destination: "/portfolio/index.html" }],
+    };
+  },
 
   images: {
     formats: ["image/webp", "image/avif"],

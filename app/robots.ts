@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://aavashlamichhane.com/sitemap.xml",
+    sitemap: "https://www.aavashlamichhane.com/sitemap.xml",
   };
 }

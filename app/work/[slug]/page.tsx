@@ -1,4 +1,4 @@
-import Link from "next/link";
+/* eslint-disable @next/next/no-html-link-for-pages -- Homepage is a static document; use full navigation instead of the RSC router. */
 import { notFound } from "next/navigation";
 import { WORK_STUDIES } from "@/data/work";
 export function generateStaticParams(){return WORK_STUDIES.map(s=>({slug:s.slug}));}
@@ -6,7 +6,7 @@ export async function generateMetadata({params}:{params:Promise<{slug:string}>})
 export default async function WorkPage({params}:{params:Promise<{slug:string}>}){
  const {slug}=await params;const s=WORK_STUDIES.find(s=>s.slug===slug);if(!s)notFound();
  return <article className="case-page section">
-  <Link className="minor" href="/#work">← All work</Link><span className="eyebrow">{s.kind}</span>
+  <a className="minor" href="/#work">← All work</a><span className="eyebrow">{s.kind}</span>
   <h1>{s.title}</h1><p className="case-summary">{s.summary}</p>
   {s.repo&&<a className="text-link" href={s.repo} target="_blank" rel="noopener noreferrer">View source code ↗</a>}
   <div className="case-body">
@@ -17,6 +17,6 @@ export default async function WorkPage({params}:{params:Promise<{slug:string}>})
    <section><h2>Failure modes & verification</h2><p>{s.failure}</p></section>
    <section><h2>Next iteration</h2><p>{s.next}</p></section>
    <section><h2>Evidence & metrics</h2><p>{s.metrics}</p><ul className="source-links">{s.sources.map(link=><li key={link.url}><a href={link.url} target="_blank" rel="noopener noreferrer">{link.label} ↗</a></li>)}</ul></section>
-  </div><Link className="button primary" href="/#contact">Let’s talk about the implementation ↗</Link>
+  </div><a className="button primary" href="/#contact">Let’s talk about the implementation ↗</a>
  </article>;
 }

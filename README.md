@@ -1,47 +1,20 @@
 # Aavash Lamichhane — Portfolio
 
-Personal portfolio site. Built to be fast, clean, and easy to maintain.
+Live at https://www.aavashlamichhane.com. Rutgers Computer Science and Economics double major, graduating May 2028, seeking summer 2027 software engineering internships.
 
-**Live:** [aavashlamichhane.com](https://aavashlamichhane.com) &nbsp;·&nbsp; **Resume:** [PDF](./public/Aavash.Lamichhane_SWE_Resume.pdf)
+## Homepage
 
----
+The production homepage is authored in `public/portfolio/index.html`, `styles.css`, and `app.js`. A Next.js `beforeFiles` rewrite serves this static document at `/`, preserving the existing Vercel project and older `/work/[slug]` walkthroughs. The homepage loads no React runtime. Keep links from legacy React pages to the homepage as native anchors for full document navigation.
 
-## About
+Assets, self-hosted fonts, portraits, and the resume are in `public/portfolio/assets/`. Attribution is in `public/portfolio/licenses/`.
 
-CS student at Rutgers University, minoring in Economics. I build products end-to-end — from landing pages to full-stack SaaS. Currently open to software engineering internships.
+Motion uses CSS transforms and opacity, one-time intersection reveals, and native scrolling. Reduced motion and a pause control are supported. ClearForge loads in an interactive iframe only after opening its preview and unloads on close. Rotgen uses clearly labeled public website snapshots because its live site blocks framing.
 
-Engineering evidence on the site includes a Verizon SWE internship, source-linked walkthroughs of Urmi booking, Huddle availability ranking, and ClearForge subscription synchronization. Rotgen remains an overview until its implementation is available for review.
+## Development and deployment
 
-Availability: Summer 2027 SWE internships (full-time), part-time during the semester, and open to a Fall 2026 co-op or winter program. Based in NJ, open to NYC.
+- `npm ci`
+- `npm run dev`
+- `npm run build` then `npm start` for a production check
+- Push `main` to deploy through the existing Vercel integration.
 
----
-
-## Stack
-
-| Layer | Tech |
-|---|---|
-| Framework | Next.js 15 (App Router) |
-| Language | TypeScript |
-| Styling | Tailwind CSS v4 |
-| Animation | Native video chapters + CSS transitions |
-| Icons | Lucide React |
-| Deployment | Vercel |
-
----
-
-## Features
-
-- Warm ivory and blue visual theme with prominent resume and contact links
-- One scroll plays one video chapter, then pauses indefinitely for reading
-- Accessible five-dot chapter navigation; Skip and reduced-motion fallback
-- Native 60 fps video playback with no quality selector
-- Server-rendered project, experience, and toolbox content
-- Responsive project cards with live preview dialogs
-
-Video sources were generated at 1440×1920 / 24 fps and motion-interpolated for 60 fps playback. The player always uses the smooth exports. Playback runs in the browser video pipeline, without per-frame React renders or canvas image requests.
-
----
-
-## Contact
-
-[alamichhane158@gmail.com](mailto:alamichhane158@gmail.com) &nbsp;·&nbsp; [LinkedIn](https://www.linkedin.com/in/aavash-lamichhane-1068622a5/) &nbsp;·&nbsp; [GitHub](https://github.com/Aavash-L)
+The ClearForge repository allows this portfolio’s exact production origins to embed its public marketing pages. Its account routes remain restricted to same-origin framing.
