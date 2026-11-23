@@ -8,7 +8,7 @@ The production homepage is authored in `public/portfolio/index.html`, `styles.cs
 
 Assets, self-hosted fonts, portraits, and the resume are in `public/portfolio/assets/`. Attribution is in `public/portfolio/licenses/`.
 
-Motion uses CSS transforms and opacity, one-time intersection reveals, and native scrolling. Reduced motion and a pause control are supported. ClearForge loads in an interactive iframe only after opening its preview and unloads on close. Rotgen uses clearly labeled public website snapshots because its live site blocks framing.
+The design uses a personal introduction, a color portrait, engineering notes, and actual project screenshots. Motion uses CSS transforms and opacity, one-time intersection reveals, and native scrolling. Reduced motion and a pause control are supported. ClearForge loads in an interactive iframe only after opening its preview and unloads on close. Rotgen uses clearly labeled public website snapshots because its live site blocks framing.
 
 ## Development and deployment
 

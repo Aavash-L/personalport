@@ -1,4 +1,4 @@
-/* Motion patterns adapted from InstaLanding.ai (MIT): reveal, marquee, magnetic CTA.
+/* Reveal pattern adapted from InstaLanding.ai (MIT).
    No scroll interception, rendering library, or continuous JavaScript animation loop. */
 (() => {
   'use strict';
@@ -29,24 +29,8 @@
       targets.forEach(el => { el.classList.add('waiting'); reveal.observe(el); });
       root.classList.add('motion-ready');
     }
-    const strip = document.querySelector('.companies');
-    const visibility = new IntersectionObserver(entries => {
-      entries.forEach(entry => entry.target.classList.toggle('offscreen', !entry.isIntersecting));
-    });
-    visibility.observe(strip);
   }
 
-  const cta = document.querySelector('.magnetic');
-  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
-  let bounds;
-  cta.addEventListener('pointerenter', () => { bounds = cta.getBoundingClientRect(); });
-  cta.addEventListener('pointermove', event => {
-    if (paused || reduced.matches || !finePointer.matches || !bounds) return;
-    const x = (event.clientX - bounds.left - bounds.width / 2) * 0.12;
-    const y = (event.clientY - bounds.top - bounds.height / 2) * 0.12;
-    cta.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`;
-  }, { passive: true });
-  cta.addEventListener('pointerleave', () => { cta.style.transform = ''; });
   const preview = document.querySelector('#rotgen-preview');
   const tabs = [...preview.querySelectorAll('[data-preview-tab]')];
   const selectPreview = tab => {
@@ -97,8 +81,5 @@
   livePreview.addEventListener('close', () => {
     liveFrame.removeAttribute('src');
     document.body.classList.remove('preview-is-open');
-  });
-  document.addEventListener('visibilitychange', () => {
-    document.body.classList.toggle('offscreen', document.hidden);
   });
 })();
